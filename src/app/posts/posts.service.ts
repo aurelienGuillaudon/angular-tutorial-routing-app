@@ -10,6 +10,8 @@ import { catchError } from 'rxjs/operators';
 import { HttpErrorHandler, HandleError } from '../http-error-handler.service';
 import { Post } from './post';
 
+const baseUrl: string = 'https://jsonplaceholder.typicode.com'
+
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json',
@@ -19,7 +21,7 @@ const httpOptions = {
 
 @Injectable()
 export class PostService {
-  postsUrl = '/posts';  // URL to web api
+  postsUrl = baseUrl + '/posts';  // URL to web api
   private readonly handleError: HandleError;
 
   constructor(

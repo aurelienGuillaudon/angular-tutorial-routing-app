@@ -1,0 +1,36 @@
+<h2>Postes</h2>
+<div class="search">
+    <label for="post-title">Post title: </label>
+    <input type="text" [(ngModel)]="postTitle" id="post-title">
+
+    <button type="button" [disabled]="!postTitle"
+            (click)="add(postTitle)">Add post</button>
+    <button type="button" (click)="search(postTitle)">
+        Search
+    </button>
+</div>
+
+<ul class="posts">
+    <li *ngFor="let post of posts">
+        <span class="badge">{{ post.id || -1 }}</span>
+        <span *ngIf="post!==editPost; else editInput" class="title">{{post.title}}</span>
+        <ng-template #editInput>
+            <input #postEditInput type="text" class="title" [value]="editPost!.title" (blur)="edit(postEditInput.value)" (keydown.enter)="edit(postEditInput.value)"/>
+        </ng-template>
+        <button *ngIf="post!==editPost" type="button" class="edit" title="edit post"
+                (click)="editPost = post">
+            Edit
+        </button>
+        <button type="button" class="delete" title="delete post"
+                (click)="delete(post)">
+            Delete
+        </button>
+    </li>
+</ul>
+
+
+<!--
+Copyright Google LLC. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at https://angular.io/license
+-->
