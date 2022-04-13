@@ -76,7 +76,7 @@ export class PostService {
     httpOptions.headers =
       httpOptions.headers.set('Authorization', 'my-new-auth-token');
 
-    return this.http.put<Post>(this.postsUrl, post, httpOptions)
+    return this.http.put<Post>(`${this.postsUrl}/${post.id}`, post, httpOptions)
       .pipe(
         catchError(this.handleError('updatePost', post))
       );
