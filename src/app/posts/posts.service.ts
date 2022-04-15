@@ -73,8 +73,8 @@ export class PostService {
 
   /** PUT: update the post on the server. Returns the updated post upon success. */
   updatePost(post: Post): Observable<Post> {
-    httpOptions.headers =
-      httpOptions.headers.set('Authorization', 'my-new-auth-token');
+   /* httpOptions.headers =
+      httpOptions.headers.set('Authorization', 'my-new-auth-token');*/
 
     return this.http.put<Post>(`${this.postsUrl}/${post.id}`, post, httpOptions)
       .pipe(

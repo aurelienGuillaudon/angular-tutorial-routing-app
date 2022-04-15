@@ -1,0 +1,9 @@
+<form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+
+    <label for="title">Title: </label>
+    <input id="title" type="text" formControlName="title">
+
+    <label for="body">Content: </label>
+    <input id="body" type="text" formControlName="body">
+
+</form>

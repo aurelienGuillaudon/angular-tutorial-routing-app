@@ -5,15 +5,17 @@ import { PostService } from './posts.service';
 @Component({
   selector: 'app-posts',
   templateUrl: './posts.component.html',
-  styleUrls: ['./posts.component.css']
+  styleUrls: ['./posts.component.css'],
 })
 export class PostsComponent implements OnInit {
 
   posts: Post[] = []
   editPost: Post | undefined
-  postTitle= ''
+  postTitle = ''
   postBody = ''
-  constructor(private PostService:PostService) { }
+
+  constructor(private PostService: PostService) {
+  }
 
   @ViewChild('postEditInput')
   set postEditInput(element: ElementRef<HTMLInputElement>) {
@@ -56,8 +58,8 @@ export class PostsComponent implements OnInit {
     */
   }
 
-  edit(postName: string) {
-    this.update(postName);
+  edit(post: Post) {
+    this.update(post);
     this.editPost = undefined;
   }
 
@@ -72,10 +74,13 @@ export class PostsComponent implements OnInit {
     }
   }
 
-  update(postName: string) {
-    if (postName && this.editPost && this.editPost.title !== postName) {
+  update(post: Post) {
+    if ( post
+      && this.editPost
+      && (this.editPost.title !== post.title || this.editPost.body !== post.body)
+    ) {
       this.PostService
-        .updatePost({...this.editPost, title: postName})
+        .updatePost({ ...this.editPost, title: post.title, body: post.body })
         .subscribe(post => {
           // replace the post in the posts list with update from server
           const ix = post ? this.posts.findIndex(h => h.id === post.id) : -1;
@@ -87,4 +92,6 @@ export class PostsComponent implements OnInit {
     }
   }
 
+
+  //test
 }

@@ -19,8 +19,9 @@ import { HttpErrorHandler } from './http-error-handler.service';
 import { httpInterceptorProviders } from './http-interceptors';
 import { MessageService } from './message.service';
 import { AuthService } from './auth.service';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PostService } from './posts/posts.service';
+import { PostEditorComponent } from './post-editor/post-editor.component';
 
 @NgModule({
   declarations: [
@@ -36,12 +37,14 @@ import { PostService } from './posts/posts.service';
     FetchDataComponent,
     FetchPostComponent,
     PackageSearchComponent,
+    PostEditorComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [
     HttpErrorHandler,
