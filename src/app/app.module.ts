@@ -20,7 +20,18 @@ import { httpInterceptorProviders } from './http-interceptors';
 import { MessageService } from './message.service';
 import { AuthService } from './auth.service';
 import { FormsModule } from '@angular/forms';
-import { PostService } from './posts/posts.service';
+import { NZ_I18N } from 'ng-zorro-antd/i18n';
+import { fr_FR } from 'ng-zorro-antd/i18n';
+import { registerLocaleData } from '@angular/common';
+import fr from '@angular/common/locales/fr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { IconsProviderModule } from './icons-provider.module';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { NzMenuModule } from 'ng-zorro-antd/menu';
+import { NzCarouselModule } from 'ng-zorro-antd/carousel';
+import { PostService } from './pages/posts/posts.service';
+
+registerLocaleData(fr);
 
 @NgModule({
   declarations: [
@@ -42,13 +53,19 @@ import { PostService } from './posts/posts.service';
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
+    BrowserAnimationsModule,
+    IconsProviderModule,
+    NzLayoutModule,
+    NzMenuModule,
+    NzCarouselModule,
   ],
   providers: [
     HttpErrorHandler,
     MessageService,
     PostService,
     { provide: RequestCache, useClass: RequestCacheWithMap },
-    httpInterceptorProviders],
+    httpInterceptorProviders,
+    { provide: NZ_I18N, useValue: fr_FR }],
   bootstrap: [AppComponent],
 })
 export class AppModule {
